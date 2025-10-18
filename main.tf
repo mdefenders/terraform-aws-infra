@@ -90,6 +90,19 @@ resource "aws_instance" "bastion" {
   vpc_security_group_ids = [aws_security_group.bastion[0].id]
   iam_instance_profile   = aws_iam_instance_profile.bastion[0].name
 
+  user_data = <<-EOF
+    #!/bin/bash
+    sudo yum remove awscli
+    cd
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+    unzip awscliv2.zip
+    sudo ./aws/install
+    rm -rf ./aws awscliv2.zip
+    sudo yum install -y yum-utils
+    sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
+    sudo yum -y install terraform
+  EOF
+
   metadata_options {
     http_tokens = "required"
   }
