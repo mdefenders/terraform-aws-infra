@@ -12,3 +12,8 @@ output "bastion_id" {
   value       = aws_instance.bastion[0].id
   description = "Bastion host EC2 instance ID (null if not created)."
 }
+
+output "bastion_security_group" {
+  value = aws_security_group.bastion[0].id
+  description = "Security group ID for the bastion host (null if not created)."
+}
