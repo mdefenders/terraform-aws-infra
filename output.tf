@@ -9,6 +9,6 @@ output "bastion_instance_profile_name" {
 }
 
 output "bastion_id" {
-  value       = aws_instance.bastion.id
+  value       = aws_instance.bastion[0].id
   description = "Bastion host EC2 instance ID (null if not created)."
 }
