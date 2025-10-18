@@ -101,6 +101,8 @@ resource "aws_instance" "bastion" {
     sudo yum install -y yum-utils
     sudo yum-config-manager --add-repo https://rpm.releases.hashicorp.com/AmazonLinux/hashicorp.repo
     sudo yum -y install terraform
+    sudo yum install -y tmux
+    sudo curl https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3 | bash
   EOF
 
   metadata_options {
